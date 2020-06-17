@@ -21,6 +21,7 @@ var/
 .DS_Store
 .idea/
 node_modules/
+.env
 /
 # Serverless directories
 .serverless

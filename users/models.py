@@ -4,7 +4,7 @@ from pynamodb.attributes import UnicodeAttribute
 from pynamodb.models import Model
 
 
-class User(Model):
+class UserModel(Model):
     class Meta:
         table_name = 'users'
 

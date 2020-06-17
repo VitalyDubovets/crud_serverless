@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields, post_load
 
-from users.models import User
+from users.models import UserModel
 
 
 class UserSchemaCreate(Schema):
@@ -10,7 +10,10 @@ class UserSchemaCreate(Schema):
 
     @post_load
     def make_user(self, data, **kwargs):
-        return User(**data)
+        uuid = data.get('id')
+        if uuid and len(uuid) != 36:
+            data.pop('id')
+        return UserModel(**data)
 
 
 class UserSchemaPatch(Schema):
