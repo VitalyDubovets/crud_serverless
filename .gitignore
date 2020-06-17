@@ -22,6 +22,9 @@ var/
 .idea/
 node_modules/
 .env
+*.pyc
+**/__pycache__/
+__pycache__/
 /
 # Serverless directories
 .serverless
