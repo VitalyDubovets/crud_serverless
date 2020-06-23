@@ -9,10 +9,10 @@ from .users import User
 
 @dataclass
 class UserAPIClient:
-    user: User = field(default=User())
+    user: User = field(default_factory=User())
     stage: str = field(default=config('stage', 'dev'))
     domain: str = field(default=config('DOMAIN'))
-    api_version: str = field(default='v1')
+    api_version: str = 'v1'
 
     @property
     def url(self) -> str:
@@ -26,17 +26,17 @@ class UserAPIClient:
             self.user.ids_list.append(user_id)
         return response
 
-    def patch_user(self, json_data: dict, method: str = 'PATCH')  -> Response:
+    def patch_user(self, json_data: dict, method: str = 'PATCH') -> Response:
         url: str = self.url + f'/{self.user.id_dynamodb}'
         return requests.request(method=method, url=url, json=json_data)
 
-    def get_user(self, method: str = 'GET') -> Response:
+    def get_user(self) -> Response:
         url: str = self.url + f'/{self.user.id_dynamodb}'
-        return requests.request(method=method, url=url)
+        return requests.request(method='GET', url=url)
 
-    def get_users(self, method: str = 'GET') -> Response:
-        return requests.request(method=method, url=self.url)
+    def get_users(self) -> Response:
+        return requests.request(method='GET', url=self.url)
 
-    def delete_user(self, method: str = 'DELETE') -> Response:
+    def delete_user(self) -> Response:
         url: str = self.url + f'/{self.user.id_dynamodb}'
-        return requests.request(method=method, url=url)
+        return requests.request(method='DELETE', url=url)
