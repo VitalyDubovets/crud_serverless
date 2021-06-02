@@ -20,6 +20,6 @@ python-decouple==3.3
 requests==2.23.0
 s3transfer==0.3.3
 six==1.15.0
-urllib3==1.25.9
+urllib3==1.26.5
 wcwidth==0.2.4
 zipp==3.1.0
